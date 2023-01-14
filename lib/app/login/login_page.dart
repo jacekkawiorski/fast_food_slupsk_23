@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  if (isCreatingAccount = true) {
+                  if (isCreatingAccount == true) {
                     //rejestracja
                     try {
                       await FirebaseAuth.instance
