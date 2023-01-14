@@ -13,6 +13,8 @@ class AddOpinionPageCcontent extends StatefulWidget {
 class _AddOpinionPageCcontentState extends State<AddOpinionPageCcontent> {
   var restaurantName = "";
   var foodName = '';
+  var rating = 3.0;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -42,13 +44,24 @@ class _AddOpinionPageCcontentState extends State<AddOpinionPageCcontent> {
                 });
               },
             ),
+            Slider(
+                onChanged: (newValue) {
+                  setState(() {
+                    rating = newValue;
+                  });
+                },
+                value: rating,
+                min: 1.0,
+                max: 6.0,
+                divisions: 10,
+                label: rating.toString()),
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
                 FirebaseFirestore.instance.collection('restaurants').add({
                   'food': foodName,
                   'name': restaurantName,
-                  'rating': 3.0,
+                  'rating': rating,
                 });
               },
               child: const Text('Dodaj opinie'),
