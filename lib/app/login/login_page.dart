@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var errormsg = '';
+  var isCreatingAccount = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,9 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Zaloguj sie do aplikacji"),
+              Text(isCreatingAccount == true
+                  ? 'Zarejestruj się'
+                  : "Zaloguj sie do aplikacji"),
               const SizedBox(height: 50),
               TextField(
                 decoration: const InputDecoration(hintText: 'Email'),
@@ -39,26 +42,62 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 30),
               Text(
                 errormsg,
-                style: TextStyle(color: Colors.red),
+                style: const TextStyle(color: Colors.red),
               ),
-              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: widget.emailcontroller.text,
-                      password: widget.passwordcontroller.text,
-                    );
-                  } catch (error) {
-                    setState(
-                      () {
+                  if (isCreatingAccount = true) {
+                    //rejestracja
+                    try {
+                      await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                        email: widget.emailcontroller.text,
+                        password: widget.passwordcontroller.text,
+                      );
+                    } catch (error) {
+                      setState(() {
                         errormsg = error.toString();
-                      },
-                    );
+                      });
+                    }
+                  } else {
+                    //logowanie
+                    try {
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: widget.emailcontroller.text,
+                        password: widget.passwordcontroller.text,
+                      );
+                    } catch (error) {
+                      setState(() {
+                        errormsg = error.toString();
+                      });
+                    }
                   }
                 },
-                child: const Text('Zaloguj sie'),
-              )
+                child: Text(isCreatingAccount == true
+                    ? 'Zarejestruj się'
+                    : 'Zaloguj sie'),
+              ),
+              const SizedBox(height: 20),
+              if (isCreatingAccount == false) ...[
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      isCreatingAccount = true;
+                    });
+                  },
+                  child: const Text("Utwórz konto"),
+                ),
+              ],
+              if (isCreatingAccount == true) ...[
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      isCreatingAccount = false;
+                    });
+                  },
+                  child: const Text("Masz już konto ?"),
+                ),
+              ],
             ],
           ),
         ),
