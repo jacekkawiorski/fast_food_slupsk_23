@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class AddOpinionPageCcontent extends StatefulWidget {
   const AddOpinionPageCcontent({
     Key? key,
+    required this.onSave,
   }) : super(key: key);
+
+  final Function onSave;
 
   @override
   State<AddOpinionPageCcontent> createState() => _AddOpinionPageCcontentState();
@@ -57,13 +60,16 @@ class _AddOpinionPageCcontentState extends State<AddOpinionPageCcontent> {
                 label: rating.toString()),
             const SizedBox(height: 40),
             ElevatedButton(
-              onPressed: () {
-                FirebaseFirestore.instance.collection('restaurants').add({
-                  'food': foodName,
-                  'name': restaurantName,
-                  'rating': rating,
-                });
-              },
+              onPressed: restaurantName.isEmpty || foodName.isEmpty
+                  ? null
+                  : () {
+                      FirebaseFirestore.instance.collection('restaurants').add({
+                        'food': foodName,
+                        'name': restaurantName,
+                        'rating': rating,
+                      });
+                      widget.onSave();
+                    },
               child: const Text('Dodaj opinie'),
             )
           ],
