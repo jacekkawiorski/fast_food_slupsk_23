@@ -1,3 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fast_food_slupsk_23/app/home/add_opinon/add_opinion_page_content.dart';
+import 'package:fast_food_slupsk_23/app/home/my_account/my_account_page_content.dart';
+import 'package:fast_food_slupsk_23/app/home/restaurants/restaurants_page_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -19,33 +23,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Fast Food Słupsk')),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return const Center(
-            child: Text('Ekran z Opinie'),
-          );
+          return const RestaurantsPageCcontent();
         }
         if (currentIndex == 1) {
-          return const Center(
-            child: Text('Ekran z Dodaj'),
-          );
+          return const AddOpinionPageCcontent();
         }
 
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Jestes zalogowany jako ${widget.user.email}'),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                child: const Text('Wyloguj'),
-              ),
-            ],
-          ),
-        );
+        return MyAccountPageContent(email: widget.user.email);
       }),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
