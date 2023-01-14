@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Text(isCreatingAccount == true
                   ? 'Zarejestruj się'
-                  : "Zaloguj sie do aplikacji"),
+                  : "Zaloguj się"),
               const SizedBox(height: 50),
               TextField(
                 decoration: const InputDecoration(hintText: 'Email'),
