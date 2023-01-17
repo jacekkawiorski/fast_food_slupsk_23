@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fast_food_slupsk_23/app/home/restaurants/cubit/restaurants_cubit.dart';
+import 'package:fast_food_slupsk_23/app/features/home/restaurants/cubit/restaurants_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

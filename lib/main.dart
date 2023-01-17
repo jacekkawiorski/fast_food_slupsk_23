@@ -1,5 +1,5 @@
-import 'package:fast_food_slupsk_23/app/home/home_page.dart';
-import 'package:fast_food_slupsk_23/app/login/login_page.dart';
+import 'package:fast_food_slupsk_23/app/features/home/home_page.dart';
+import 'package:fast_food_slupsk_23/app/features/login/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
