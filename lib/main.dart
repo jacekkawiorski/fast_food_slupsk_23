@@ -1,9 +1,7 @@
-import 'package:fast_food_slupsk_23/app/features/home/home_page.dart';
-import 'package:fast_food_slupsk_23/app/features/login/login_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fast_food_slupsk_23/app/add.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -12,39 +10,41 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Fast Food Słupsk',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const RootPage(),
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
 
-class RootPage extends StatelessWidget {
-  const RootPage({
-    Key? key,
-  }) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Fast Food Słupsk',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const RootPage(),
+//     );
+//   }
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        final user = snapshot.data;
-        if (user == null) {
-          return LoginPage();
-        }
-        return HomePage(user: user);
-      },
-    );
-  }
+// class RootPage extends StatelessWidget {
+//   const RootPage({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<User?>(
+//       stream: FirebaseAuth.instance.authStateChanges(),
+//       builder: (context, snapshot) {
+//         final user = snapshot.data;
+//         if (user == null) {
+//           return LoginPage();
+//         }
+//         return HomePage(user: user);
+//       },
+//     );
+//   }
+// }
 }

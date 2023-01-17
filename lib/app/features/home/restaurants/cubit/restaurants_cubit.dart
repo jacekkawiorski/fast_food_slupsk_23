@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fast_food_slupsk_23/app/features/home/restaurants/restaurants_page_content.dart';
 import 'package:meta/meta.dart';
 
 part 'retaurants_state.dart';
