@@ -1,4 +1,4 @@
-import 'package:fast_food_slupsk_23/app/add.dart';
+import 'package:fast_food_slupsk_23/app/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
